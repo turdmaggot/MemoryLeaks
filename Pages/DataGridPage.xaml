@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MemoryLeaks"
@@ -12,16 +12,21 @@
         Padding="40">
 
         <syncfusion:SfDataGrid
-            MinimumHeightRequest="100"
+            x:Name="dataGrid"
+            MinimumHeightRequest="500"
             MinimumWidthRequest="450"
             BackgroundColor="LightGray"
+            AllowEditing="True"
+            SelectionMode="Single"    
+            NavigationMode="Cell"
+            EditTapAction="OnTap"
             ItemsSource="{Binding OrderInfoCollection}">
 
             <syncfusion:SfDataGrid.Columns>
 
                 <syncfusion:DataGridNumericColumn
                     HeaderText="Order ID"
-                    MappingName="OrderID"
+                    MappingName="OrderID"                    
                     Width="150"
                     Format="0" />
 
@@ -30,10 +35,36 @@
                     MappingName="CustomerID"
                     Width="150" />
 
-                <syncfusion:DataGridTextColumn
-                    HeaderText="Ship Country"
-                    MappingName="ShipCountry"
-                    Width="150" />
+               
+
+                <syncfusion:DataGridTextColumn MappingName="ShipCountry"
+                                               AllowEditing="False">
+
+                    <syncfusion:DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+
+                            <Label
+                                Text="Ship Country"                                                             
+                                VerticalOptions="Center"/>
+
+                        </DataTemplate>
+                    </syncfusion:DataGridTextColumn.HeaderTemplate>
+
+                    <syncfusion:DataGridTextColumn.Width>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="90"/>
+                            <On Platform="Android" Value="85"/>
+                            <On Platform="WinUI" Value="100"/>
+                        </OnPlatform>
+                    </syncfusion:DataGridTextColumn.Width>
+
+
+                    <syncfusion:DataGridTextColumn.CellStyle>
+                        <Style TargetType="syncfusion:DataGridCell">
+                            <Setter Property="Background" Value="Gray" />
+                        </Style>
+                    </syncfusion:DataGridTextColumn.CellStyle>
+                </syncfusion:DataGridTextColumn>
 
                 </syncfusion:SfDataGrid.Columns>
             

@@ -1,3 +1,5 @@
+using Syncfusion.Maui.DataGrid;
+
 namespace MemoryLeaks;
 
 public partial class DataGridPage : BasePage
@@ -6,6 +8,7 @@ public partial class DataGridPage : BasePage
 	{
 		InitializeComponent();
 
-		BindingContext = new DataGridViewModel();
-	}
+		BindingContext = new DataGridViewModel();        
+    }
+
 }
